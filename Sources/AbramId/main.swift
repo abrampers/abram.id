@@ -16,7 +16,7 @@ struct AbramId: Website {
     }
 
     // Update these properties to configure your website:
-    var url = URL(string: "https://your-website-url.com")!
+    var url = URL(string: "https://abram.id")!
     var name = "Abram Situmorang"
     var description = "Here's a bit of my presence on the internet."
     var language: Language { .english }

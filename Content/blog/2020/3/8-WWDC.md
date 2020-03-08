@@ -1,7 +1,7 @@
 ---
 date: 2020-03-08 17:31
 title: WWDC19 🤖: Best Dub-Dub ever!
-description: A description of my first post.
+description: This year, I’m very lucky to be one of the WWDC19 Scholarship Winner from Indonesia to attend Apple’s event of the year. It’s obviously the best Dub-Dub ever since it’s my first time here! Dub-Dub 19 is an event packed with awesome things and I’m going to tell my story from the complete beginning. Here we go!
 tags: wwdc, apple
 ---
 
