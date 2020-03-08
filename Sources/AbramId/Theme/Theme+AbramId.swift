@@ -5,6 +5,7 @@
 //  Created by Abram Situmorang on 08/03/20.
 //
 
+import Foundation
 import Plot
 import Publish
 
@@ -214,7 +215,14 @@ private extension Node where Context == HTML.BodyContext {
                         .href(item.path),
                         .text(item.title)
                     )),
-                    .tagList(for: item, on: site),
+                    .div(
+                        .class("metadata"),
+                        .tagList(for: item, on: site),
+                        .span(
+                            .class("date"),
+                            .text(DateFormatter.article.string(from: item.date))
+                        )
+                    ),
                     .p(.text(item.description))
                 ))
             }
