@@ -14,7 +14,7 @@ extension Theme where Site == AbramId {
     static var abramId: Self {
         Theme(
             htmlFactory: AbramIdHTMLFactory(),
-            resourcePaths: ["Resources/FoundationTheme/styles.css"]
+            resourcePaths: ["Resources/AbramIdTheme/styles.css"]
         )
     }
 }
