@@ -1,4 +1,5 @@
 import Foundation
+import HighlightJSPublishPlugin
 import Publish
 import Plot
 
@@ -33,5 +34,8 @@ try AbramId().publish(
     withTheme: .abramId,
     additionalSteps: [
         .deploy(using: .gitHub("abrampers/abrampers.github.io"))
+    ],
+    plugins: [
+        .highlightJS()
     ]
 )

@@ -64,7 +64,7 @@ A feature of datagram-oriented transmission protocols. The sliding window protoc
 
 A real-time peer-to-peer collaborative GUI editor (like Google Docs) using CRDT to provide data consistency between peers. 
 
-<img src="/gifs/wedit_demo.gif" alt="Wedit demo" style="width: 100%;"/>
+<img src="/gifs/resume/wedit_demo.gif" alt="Wedit demo" style="width: 100%;"/>
 
 ### [Metalify](https://github.com/abrampers/WWDC19-Submission)
 A friendly introduction to Apple's Metal framework using MetalKit. This is my WWDC19 Scholarship Submission, and I got accepted!
@@ -75,7 +75,7 @@ Using Swift 4, I developed and led the development of iOS application for introd
 ### [Pong](https://github.com/mlitb/pong)
 Implementation of training a RL agent to play the mighty game of Pong.
 
-<img src="/gifs/pong_demo.gif" alt="Pong demo" style="margin:10px; border: 1px solid #bfbfbf; max-width: 25%;"/>
+<img src="/gifs/resume/pong_demo.gif" alt="Pong demo" style="margin:10px; border: 1px solid #bfbfbf; max-width: 25%;"/>
 
 ### [Linelix](https://github.com/abrampers/linelix)
 The first Elixir LINE Bot wrapper using Elixir (by the day it was written).
@@ -83,13 +83,13 @@ The first Elixir LINE Bot wrapper using Elixir (by the day it was written).
 ### [ArkavQuarium](https://github.com/abrampers/ArkavQuarium-Java)
 A simplified version of the famous __Insaniquarium__ game. The goal of this game is to buy an egg using player's Coin. The coin is produced by Guppy or Piranha and can be taken by the Snail or by the player himself. This game is made with intriguing animation made by us for our beloved players. Look here for the [C++](https://github.com/abrampers/ArkavQuarium) or [Java](https://github.com/abrampers/ArkavQuarium-Java) implementation.
 
-<img src="/gifs/arkavquarium_demo.gif" alt="ArkavQuarium demo" style="width: 100%;"/>
+<img src="/gifs/resume/arkavquarium_demo.gif" alt="ArkavQuarium demo" style="width: 100%;"/>
 
 ### [Battle for Olympia](https://github.com/abrampers/BattleForOlympia)
 A turn-based strategy game on a command line interface. The goal of this game is to destroy enemy's kingdom by killing the King who leads all enemy units. A King can recruit army, and the army can be deployed to kill enemy's unit and King. If the King dies, then the game is over. This game is a simplified version of an open source __Battle of Wesnoth__ game.
 
-<img src="/images/battle_for_olympia_1.png" alt="BattleForOlympia demo 1" style="margin:10px; border: 1px solid #bfbfbf; max-width: 45%;"/>
-<img src="/images/battle_for_olympia_2.png" alt="BattleForOlympia demo 2" style="margin:10px; border: 1px solid #bfbfbf; max-width: 45%;"/>
+<img src="/images/resume/battle_for_olympia_1.png" alt="BattleForOlympia demo 1" style="margin:10px; border: 1px solid #bfbfbf; max-width: 45%;"/>
+<img src="/images/resume/battle_for_olympia_2.png" alt="BattleForOlympia demo 2" style="margin:10px; border: 1px solid #bfbfbf; max-width: 45%;"/>
 
 ---
 

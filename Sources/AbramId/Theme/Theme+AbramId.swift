@@ -29,6 +29,7 @@ private struct AbramIdHTMLFactory: HTMLFactory {
             .body(
                 .header(for: context, selectedSection: .blog),
                 .wrapper(
+                    .h1(.text(index.title)),
                     .h2("Latest content"),
                     .itemList(
                         for: context.allItems(
@@ -169,7 +170,7 @@ private struct AbramIdHTMLFactory: HTMLFactory {
 
 private extension Node where Context == HTML.BodyContext {
     static func wrapper(_ nodes: Node...) -> Node {
-        .div(.class("wrapper"), .group(nodes))
+        .article(.class("page wrapper article"), .group(nodes))
     }
 
     static func header<T: Website>(
@@ -179,7 +180,8 @@ private extension Node where Context == HTML.BodyContext {
         let sectionIDs = T.SectionID.allCases
 
         return .header(
-            .wrapper(
+            .div(
+                .class("wrapper"),
                 .p(
                     .a(
                         .class("site-name"),
@@ -203,6 +205,9 @@ private extension Node where Context == HTML.BodyContext {
                     )
                 )
             )
+//            .wrapper(
+//                
+//            )
         )
     }
 

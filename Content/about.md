@@ -4,7 +4,7 @@ title: About
 
 # About
 
-<img src="/images/abram.jpg" alt="Me" class="center profile-picture" />
+<img src="/images/about/abram.jpg" alt="Me" class="center profile-picture" />
 
 I'm currently a student at [Institut Teknologi Bandung](https://en.wikipedia.org/wiki/Bandung_Institute_of_Technology), Indonesia pursuing a degree in Informatics Engineering (Computer Science equivalent). I am a curious person who had the dream to know everything about everything. I love to code and have so much passion in solving problems especially in Software Engineering, Artificial Intelligence, and all of its applications. I have experience interning at Indonesia's Unicorn startup [Bukalapak](https://bukalapak.com) and [Tokopedia](https://tokopedia.com), and [STOQO](https://stoqo.com) as a Software Engineer Intern. In my internship days, I've touched a wide range problems from user facing problems, to back-end business logic-heavy problems.
 
