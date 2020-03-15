@@ -34,6 +34,11 @@ extension SocialMediaLink {
             title: "Twitter",
             url: "https://twitter.com/abrampers",
             icon: "fa fa-twitter"
+        ),
+        SocialMediaLink(
+            title: "RSS Feed",
+            url: "/feed.rss",
+            icon: "fa fa-rss"
         )
     ]
 }

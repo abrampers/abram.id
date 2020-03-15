@@ -262,11 +262,7 @@ private extension Node where Context == HTML.BodyContext {
                     .text("Publish"),
                     .href("https://github.com/johnsundell/publish")
                 )
-            ),
-            .p(.a(
-                .text("RSS feed"),
-                .href("/feed.rss")
-            ))
+            )
         )
     }
 }
