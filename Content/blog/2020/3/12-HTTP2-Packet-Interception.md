@@ -9,27 +9,27 @@ tags: networking, go, http
 
 ## HTTP/2, what is it?
 
-I never knew HTTP/2 until I bumped into gRPC when it uses HTTP/2 as it's Layer 7 protocol. At first, it seems that HTTP/2 is just like another update of the widely used HTTP/1.1, but HTTP/2 is a new HTTP protocol designed to deal with the limitations of HTTP/1.1.
+I never knew HTTP/2 until I bumped into gRPC, which uses HTTP/2 as its Layer 7 protocol. At first, it seems that HTTP/2 is just like another update of the commonly used HTTP/1.1. Yet HTTP/2 is a new HTTP protocol designed to deal with the limitations of HTTP/1.1.
 
-For a bit of context, HTTP/1.1 had plenty of latency and inefficiency issues that made the performance of common internet webpage (who relies heavily on HTTP protocols) extremely hard to optimize. Imagine the first time we open a web page, it might need to request a few dozen resources from stylesheets, images, JavaScript codes, and other API calls. HTTP/1.1 does this by creating an equal number of TCP connection to get the resources in a parallel fashion. This means when the server is processing and preparing the response, the TCP connection is doing nothing but waiting the server to give the response. This is very inefficient considering every single TCP connection made is doing nothing for some time. Plus there is always a cost when opening a TCP connection and closing it. So it is very inefficient to use one TCP connection per HTTP request.
+For a bit of context, HTTP/1.1 had plenty of latency and inefficiency issues that made the performance of common internet webpage (that relies heavily on HTTP protocols) extremely hard to optimize. The first time we open a web page, it usually requires requesting a dozen resources from stylesheets, images, JavaScript codes, and other API calls. HTTP/1.1 does this by creating an equal number of TCP connection to get the resources in a parallel fashion. This means when the server is processing and preparing the response, the TCP connection is doing nothing but waiting for the server to give the response. This is very inefficient considering every single TCP connection made is doing nothing for some time. Plus there is always a cost when opening a TCP connection and closing it. So it is very inefficient to use one TCP connection per HTTP request.
 
-HTTP/2 came to solve some of the problem by enabling TCP to be multiplexed for multiple HTTP requests. So with HTTP/2 we will be opening less number of TCP connection compared with HTTP/1.1. HTTP/2 also enables a TCP connection to be reused for multiple request, no more one TCP connection per HTTP request. These two features will improve the utilization of the TCP connection.
+HTTP/2 was made to solve some of the problems by enabling TCP to be multiplexed for multiple HTTP requests. So with HTTP/2, we will be opening less number of TCP connections compared to HTTP/1.1. HTTP/2 also enables a TCP connection to be reused for multiple request, no more one TCP connection per HTTP request. These two features will improve the utilization of the TCP connection.
 
-Other main difference of HTTP/2 and HTTP/1.1 is that HTTP/2 is binary vs HTTP/1.1 who is textual. This gave us the benefit of speed since computers are good with binaries, but on the other side more difficult to debug (since humans are not very good with binaries). And the extra thing is even the HTTP/2 headers are compressed for performance reasons. These two features increase the complexity to intercept and process HTTP/2 packets from the previous HTTP/1.1 where we could just read the whole payload text.
+Another main difference of HTTP/2 and HTTP/1.1 is that HTTP/2 is binary, while HTTP/1.1 is textual. On one hand, this gives us the benefit of speed since computers are good with binaries. Yet on the other hand, it is more difficult to debug since humans are not very good with binaries. To add on, what's more interesting is even the HTTP/2 headers are compressed for performance reasons. These two features increase the complexity to intercept and process HTTP/2 packets from the previous HTTP/1.1 where we could just read the whole payload text.
 
-Aside from features mentioned above, there are plenty other features of HTTP/2 you can read in the [RFC 7540](https://httpwg.org/specs/rfc7540.html) document.
+Aside from features mentioned above, there are plenty of other features of HTTP/2 you can read in the [RFC 7540](https://httpwg.org/specs/rfc7540.html) document.
 
 ## Intercepting the actual packets
 
-At this time of writing, I haven't found any way to intercept and decode HTTP/2 packet other than [Wireshark](https://www.wireshark.org). Wireshark is obviously a great tool for network analysis, but at other times, we want to intercept and process the packet built in right onto our applications. Wireshark isn't great for this use case, so we need to integrate HTTP/2 into existing packet interception library.
+At this time of writing, I haven't found any way to intercept and decode HTTP/2 packet other than [Wireshark](https://www.wireshark.org). Wireshark is obviously a great tool for network analysis, but at other times, we want to intercept and process the packet built in right onto our applications. In this use case, Wireshark is not a suitable option, so we need to integrate HTTP/2 into existing packet interception library.
 
 To intercept the packets, I will be using Go with Google's [Gopacket](https://github.com/google/gopacket). This stack is my go to choice because Go have the first class support for HTTP and HTTP2 and Gopacket itself is fairly extensible.
 
-From now on we'll use the term frame to represent the unit of transfer of an HTTP/2 traffic.
+From here onwards we'll use the term "frame" to represent the unit of transfer of an HTTP/2 traffic.
 
 ### Implementing the layers
 
-Since Gopacket doesn't support HTTP/2 as it's application layer, we need to tell Gopacket how is the structure HTTP/2 frame using the code below.
+Since Gopacket doesn't support HTTP/2 as its application layer, we need to tell Gopacket about the structure of HTTP/2 frame using the code below.
 
 ```go
 // Create a layer type and give it a name and a decoder to use.
@@ -111,7 +111,7 @@ func validateHTTP2(payload []byte) error {
 
 #### `// 1 DecodeFromBytes(data []byte, df gopacket.DecodeFeedback)`
 
-This is where we want to utilize Go's `net/http2` package to decode the frame for us. First, we create a new `framer` and pass it our data. Next we call the `ReadFrame` function to get the actual HTTP/2 frame.
+This is where we want to utilize Go's `net/http2` package to decode the frame for us. First, we create a new `framer` and pass the data to the `framer`. Next we call the `ReadFrame` function to get the actual HTTP/2 frame.
 
 #### `// 2 validateHTTP2(payload []byte)`
 
@@ -127,10 +127,10 @@ This is where we want to utilize Go's `net/http2` package to decode the frame fo
 +---------------------------------------------------------------+
 ```
 
-After many trials, I found out that `http2.Framer` would stuck if we give data that's not a valid HTTP/2 frame. This means we need to find a way to classify whether the bytes of data is a valid frame or not. [RFC 7540](https://httpwg.org/specs/rfc7540.html) document doesn't mention any way to classify a HTTP/2 frame, so I came up with a currently working solution by checking:
+After multiple trials, I found out that http2.Framer would get stuck if we give a data that's not a valid HTTP/2 frame. This means we need to find a way to classify whether the bytes of data is a valid frame or not. [RFC 7540](https://httpwg.org/specs/rfc7540.html) document doesn't mention any way to classify a HTTP/2 frame, so I came up with a currently working solution by checking:
 
-* Does the frame length specified in the frame header is the same with the actual payload length?
-* Does the R bit is unset?
+* Is the frame length specified in the frame header the same with the actual payload length?
+* Is the R bit is unset?
 
 ### Intercepting the frames
 
@@ -236,4 +236,4 @@ func main() {
 
 ## Conclusion
 
-Using Go's native HTTP support and Gopacket, we could build a packet interception program for HTTP/2. For further HTTP/2 header processing, we could also use `net/http2/hpack` package to do the HPACK decoding and decoding.
+Using Go's native HTTP support and Gopacket, we could build a packet interception program for HTTP/2. For further HTTP/2 header processing, we could also use `net/http2/hpack` package to do the HPACK decoding and encoding.

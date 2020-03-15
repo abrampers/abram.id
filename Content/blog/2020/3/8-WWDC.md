@@ -1,7 +1,7 @@
 ---
 date: 2020-03-08 17:31
 title: WWDC19 🤖: Best Dub-Dub ever!
-description: This year, I’m very lucky to be one of the WWDC19 Scholarship Winner from Indonesia to attend Apple’s event of the year. It’s obviously the best Dub-Dub ever since it’s my first time here! Dub-Dub 19 is an event packed with awesome things and I’m going to tell my story from the complete beginning. Here we go!
+description: This year, I’m very lucky to be one of the WWDC19 Scholarship Winners from Indonesia to attend Apple’s event of the year. It’s obviously the best Dub-Dub ever since it’s my first time here! Dub-Dub 19 is an event packed with awesome things and I’m going to tell my story from the complete beginning. Here we go!
 tags: wwdc, apple
 ---
 
@@ -66,7 +66,7 @@ Fast forward to the Dub Dub week, we got to check in at the convention center an
 
 ### Scholarship kickoff
 
-After checking in, all the scholarship winner were scheduled to attend scholarship kickoff where Esther Hare [@EEhare](https://twitter.com/eehare?lang=en) was there to give a little talk. She encouraged us to talk to as many people as we can, whether it’s fellow scholars, developers, or even Apple engineers. And the coolest thing here is that there were plenty of Apple engineers standing by for us to talk to. I was very excited since I never had any chance to get to meet, better yet, talk to the engineers that build Apple. Besides, there was plenty of food trucks and drinks all over the place.
+After checking in, all the scholarship winner were scheduled to attend scholarship kickoff where Esther Hare [@EEhare](https://twitter.com/eehare?lang=en) was there to give a little talk. She encouraged us to talk to as many people as we can, whether it’s fellow scholars, developers, or even Apple engineers. And the coolest thing here is that there were plenty of Apple engineers standing by for us to talk to. I was very excited since I never had any chance to get to meet, better yet, talk to the engineers that build Apple. Besides, there were plenty of food trucks and drinks all over the place..
 
 <figure>
     <img src= "https://cdn-images-1.medium.com/max/12000/1*Vu7eITgS5sivMkDNtPuOPw.jpeg" alt="Beautiful weather @ Discovery Meadow with Indonesian scholarship winners" style="width: 45%;" />
@@ -82,19 +82,19 @@ After the kickoff, a few of Indonesian scholars gather around and did a vlog abo
 
 ### Keynote
 
-The long awaited keynote was there and many people called this ‘the most packed WWDC Keynote ever’. This includes the announcement of the brand new Mac Pro, iPad OS, iOS 13, macOS Catalina and the SwiftUI & Combine who was the star for the rest of the week.
+The long awaited keynote was there and many people called this ‘the most packed WWDC Keynote ever’. This includes the announcement of the brand new Mac Pro, iPad OS, iOS 13, macOS Catalina and the SwiftUI & Combine which were the star for the rest of the week.
 
 <figure>
     <img src= "https://cdn-images-1.medium.com/max/3264/1*7IDRGBs7cyfjNYCb4eQ9Sg.jpeg" style="width: 75%;" />
 </figure>
 
-The most exciting part of the Keynote was the announcement of SwiftUI. There, Craig Federighi showed how [SwiftUI](https://developer.apple.com/documentation/swiftui) with its declarative traits+ [Combine](https://developer.apple.com/documentation/combine) (Apple’s framework for Async programming) made multi-platform development seems so easy and fluid.
+The most exciting part of the Keynote was the announcement of SwiftUI. There, Craig Federighi showed how [SwiftUI](https://developer.apple.com/documentation/swiftui), with its declarative traits + [Combine](https://developer.apple.com/documentation/combine) (Apple’s framework for Async programming) made multi-platform development seems so easy and fluid.
 
 Project Catalyst had also brought huge possibilities since it enables developer to bring iPad Apps (built using UIKit) to run in Mac (typically built using AppKit). iPads can now be used as a *sidecar *to Mac. These two features will bring iPads closer to Macs and vice versa.
 
 ### Scholarship Lounge
 
-Scholarship also had a place to chill and have a chit chat with fellow scholars throughout the week in scholarship lounge. Here, we were given a wired 10MBps connection to try all the Betas they announced.
+Scholars were given the privilege to chill and have a chit chat with fellow scholars throughout the week at the scholarship lounge. Here, we were given a wired 10MBps connection to try all the Betas they announced.
 
 <figure>
     <img src= "https://cdn-images-1.medium.com/max/11228/1*HgGxRO1iodwpL36HH254nA.jpeg" alt="Scholarship lounge: Our home" style="width: 75%;" />
@@ -124,7 +124,7 @@ For the rest of the week, there were plenty of sessions and labs conducted all o
 
 The sport activities was the High Intensity Interval Training by Aaptiv, WWDC 5K Run, and Yoga with Glo. They provided all the equipment for the training and let us have all the equipment. Note: They kinda gave us a $100 yoga mat LOL!
 
-Throughout the week they conducted an AR game called SwiftStrike. It is a bowling game where player had to hit down opponent’s pin. At the end of the week, they conducted the SwiftStrike Championship and the funny thing is both the winner and the runner up are Indonesian 🇮🇩.
+Throughout the week they conducted an AR game called SwiftStrike. It is a bowling game where the player had to hit down the opponent’s pin. At the end of the week, they conducted the SwiftStrike Championship and the funny thing is both the winner and the runner up are Indonesian 🇮🇩.
 
 On the last night, Apple also invited the Weezers to the WWDC Bash (some kind of get-together concert) where we can chill out, enjoy the concert, and play games!
 
@@ -141,7 +141,7 @@ Meeting all those people in Dub Dub opened my mind about how I look at myself. N
 
 Second thing, as a developer we tend to focus on highly technical things. Here, I realized that the ability to communicate with other people is essential for a developer’s success. Trying to share and communicate what we have in mind will help us a lot in our everyday life.
 
-The third and final thing is never, ever underestimate a person, stay humble and respect everyone.
+The third and final thing is to never, ever underestimate a person, stay humble and respect everyone.
 
 ## Final thoughts
 

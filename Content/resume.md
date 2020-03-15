@@ -23,7 +23,7 @@ title: Resume
 
 *Dec 2019 - Feb 2020, Jakarta, Indonesia*
 
-* Rewritten the routing (delivery) algorithm that enables the user to deliver many different types of food item.
+* Rewritten the routing (delivery) algorithm that enables the user to deliver different types of food items.
 
 #### Technologies: Django, Python, Pytest.
 
@@ -47,7 +47,7 @@ title: Resume
 
 *Dec 2017 - Mar 2018, Jakarta, Indonesia*
 
-* Implemented multi-messenger bot that can can be managed using single and unified API using Elixir.
+* Implemented multi-messenger bot that can be managed using single and unified API using Elixir.
 * Implemented high performing and highly concurrent database system for bot above using MongoDB.
 * Improved Bukalapak’s chat system by removing bugs and code improvements.
 * Applied functional programming and Elixir’s genserver concepts in the whole bot manager application.
@@ -81,7 +81,7 @@ Implementation of training a RL agent to play the mighty game of Pong.
 The first Elixir LINE Bot wrapper using Elixir (by the day it was written).
 
 ### [ArkavQuarium](https://github.com/abrampers/ArkavQuarium-Java)
-A simplified version of the famous __Insaniquarium__ game. The goal of this game is to buy an egg using player's Coin. The coin is produced by Guppy or Piranha and can be taken by the Snail or by the player himself. This game is made with intriguing animation made by us for our beloved players. Look here for the [C++](https://github.com/abrampers/ArkavQuarium) or [Java](https://github.com/abrampers/ArkavQuarium-Java) implementation.
+A simplified version of the famous __Insaniquarium__ game. The goal of this game is to buy an egg using player's Coin. The coin is produced by Guppy or Piranha and can be taken by the Snail or by the player himself. This game is made with intriguing animation for our beloved players. Look here for the [C++](https://github.com/abrampers/ArkavQuarium) or [Java](https://github.com/abrampers/ArkavQuarium-Java) implementation.
 
 <img src="/gifs/resume/arkavquarium_demo.gif" alt="ArkavQuarium demo" style="width: 100%;"/>
 
