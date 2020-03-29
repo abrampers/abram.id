@@ -117,7 +117,8 @@ private struct AbramIdHTMLFactory: HTMLFactory {
             .body(
                 .header(for: context, selectedSection: nil),
                 .wrapper(
-                    .h1("Browse all tags"),
+                    .h1("Browse by tag"),
+                    .p("Explore my blog by topic or category"),
                     .ul(
                         .class("all-tags"),
                         .forEach(page.tags.sorted()) { tag in
@@ -172,12 +173,32 @@ private extension Node where Context == HTML.BodyContext {
     static func wrapper(_ nodes: Node...) -> Node {
         .article(.class("page wrapper article"), .group(nodes))
     }
+    
+    static func headerList(context: PublishingContext<AbramId>, _ section: AbramId.SectionID, _ selectedSection: AbramId.SectionID) -> Node<HTML.ListContext> {
+        if section == .tags {
+            return .li(
+                .a(
+                    .href(context.sections[section].path),
+                    .text(context.sections[section].title)
+                ),
+                .class(section == selectedSection ? "search selected" : "search")
+            )
+        } else {
+            return .li(
+                .a(
+                    .href(context.sections[section].path),
+                    .text(context.sections[section].title)
+                ),
+                .class(section == selectedSection ? "selected" : "")
+            )
+        }
+    }
 
-    static func header<T: Website>(
-        for context: PublishingContext<T>,
-        selectedSection: T.SectionID?
+    static func header(
+        for context: PublishingContext<AbramId>,
+        selectedSection: AbramId.SectionID?
     ) -> Node {
-        let sectionIDs = T.SectionID.allCases
+        let sectionIDs = AbramId.SectionID.allCases
 
         return .header(
             .div(
@@ -196,18 +217,11 @@ private extension Node where Context == HTML.BodyContext {
                 .if(sectionIDs.count > 1,
                     .nav(
                         .ul(.forEach(sectionIDs) { section in
-                            .li(.a(
-                                .class(section == selectedSection ? "selected" : ""),
-                                .href(context.sections[section].path),
-                                .text(context.sections[section].title)
-                            ))
+                            return headerList(context: context, section, selectedSection ?? .tags)
                         })
                     )
                 )
             )
-//            .wrapper(
-//                
-//            )
         )
     }
 

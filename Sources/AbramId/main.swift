@@ -10,6 +10,7 @@ struct AbramId: Website {
         case blog
         case about
         case resume
+        case tags
     }
 
     struct ItemMetadata: WebsiteItemMetadata {
