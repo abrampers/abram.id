@@ -38,10 +38,10 @@ var LayerTypeHTTP2 = gopacket.RegisterLayerType(12345, gopacket.LayerTypeMetadat
 type HTTP2 struct {
     layers.BaseLayer
 
-    frame http2.Frame
+    frames []http2.Frame
 }
 
-// Implement the layer's metadata
+// Implement layer's metadata
 func (h HTTP2) LayerType() gopacket.LayerType      { return LayerTypeHTTP2 }
 func (h *HTTP2) Payload() []byte                   { return nil }
 func (h *HTTP2) CanDecode() gopacket.LayerClass    { return LayerTypeHTTP2 }
@@ -59,61 +59,63 @@ func decodeHTTP2(data []byte, p gopacket.PacketBuilder) error {
     return nil
 }
 
-// 1
-func (h *HTTP2) DecodeFromBytes(data []byte, df gopacket.DecodeFeedback) error {
-    err := validateHTTP2(data)
-    if err != nil {
-        return err
-    }
-
-    var framerOutput bytes.Buffer
-    r := bytes.NewReader(data)
-    framer := http2.NewFramer(&framerOutput, r)
-
-    h.BaseLayer = layers.BaseLayer{Contents: data[:len(data)]}
-
-    frame, err := framer.ReadFrame()
-    if err != nil {
-        return err
-    }
-    h.frame = frame
-
-    return nil
+func (h *HTTP2) Frames() []http2.Frame {
+    return h.frames
 }
 
-// 2
-func validateHTTP2(payload []byte) error {
+func (h *HTTP2) DecodeFromBytes(data []byte, df gopacket.DecodeFeedback) error {
+    var frames []http2.Frame
     frameHeaderLength := uint32(9)
-    payloadLength := len(payload)
+    payloadLength := len(data)
 
     payloadIdx := 0
     for payloadIdx < payloadLength {
         if payloadIdx+int(frameHeaderLength) > payloadLength {
-            return fmt.Errorf("packet length is not equal with the packet length mentioned in frame header")
+            return fmt.Errorf("Payload length couldn't contain Frame Headers")
         }
 
-        frameLength := (uint32(payload[payloadIdx+0])<<16 | uint32(payload[payloadIdx+1])<<8 | uint32(payload[payloadIdx+2]))
-        rBit := payload[payloadIdx+5] >> 7
+        framePayloadLength := (uint32(data[payloadIdx+0])<<16 | uint32(data[payloadIdx+1])<<8 | uint32(data[payloadIdx+2]))
+        frameLength := int(frameHeaderLength + framePayloadLength)
+
+        rBit := data[payloadIdx+5] >> 7
 
         if rBit != 0 {
             return fmt.Errorf("R bit is not unset")
         }
 
-        payloadIdx += int(frameLength + frameHeaderLength)
+        if payloadIdx+frameLength > payloadLength {
+            return fmt.Errorf("Payload length couldn't contain Payload with the length mentioned in Frame Header")
+        }
+
+        var framerOutput bytes.Buffer
+        r := bytes.NewReader(data[payloadIdx : payloadIdx+frameLength])
+        framer := http2.NewFramer(&framerOutput, r)
+
+        frame, err := framer.ReadFrame()
+        if err != nil {
+            return err
+        }
+        frames = append(frames, frame)
+
+        payloadIdx += int(frameLength)
     }
 
     if payloadIdx != payloadLength {
-        return fmt.Errorf("packet length is not equal with the packet length mentioned in frame header")
+        return fmt.Errorf("Payload length is not equal with the Frame length mentioned in Frame Header")
     }
+
+    h.BaseLayer = layers.BaseLayer{Contents: data[:len(data)]}
+    h.frames = frames
     return nil
 }
 ```
 
-#### `// 1 DecodeFromBytes(data []byte, df gopacket.DecodeFeedback)`
+#### `DecodeFromBytes(data []byte, df gopacket.DecodeFeedback)`
 
-This is where we want to utilize Go's `net/http2` package to decode the frame for us. First, we create a new `framer` and pass the data to the `framer`. Next we call the `ReadFrame` function to get the actual HTTP/2 frame.
+After multiple trials, I found out that http2.Framer would get stuck if we give a data that's not a valid HTTP/2 frame format (as depicted below). This means we need to find a way to classify whether the bytes of data is a valid frame or not. [RFC 7540](https://httpwg.org/specs/rfc7540.html) document doesn't mention any way to classify a HTTP/2 frame, so I came up with a currently working solution by checking:
 
-#### `// 2 validateHTTP2(payload []byte)`
+* Is the frame length specified in the frame header the same with the actual payload length?
+* Is the R bit is unset?
 
 ```no-highlight
 +-----------------------------------------------+
@@ -127,10 +129,7 @@ This is where we want to utilize Go's `net/http2` package to decode the frame fo
 +---------------------------------------------------------------+
 ```
 
-After multiple trials, I found out that http2.Framer would get stuck if we give a data that's not a valid HTTP/2 frame. This means we need to find a way to classify whether the bytes of data is a valid frame or not. [RFC 7540](https://httpwg.org/specs/rfc7540.html) document doesn't mention any way to classify a HTTP/2 frame, so I came up with a currently working solution by checking:
-
-* Is the frame length specified in the frame header the same with the actual payload length?
-* Is the R bit is unset?
+After we check the validity of the frame, we want to utilize Go's `net/http2` package to decode the frame for us. We do that by creating a new `framer` and pass the data to the `framer`. Next we call the `ReadFrame` function to get the actual HTTP/2 frame.
 
 ### Intercepting the frames
 
