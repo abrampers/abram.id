@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-18.04
+    runs-on: macos-10.15
     steps:
     - name: Swift setup
       uses: YOCKOW/Action-setup-swift@v1.1.2
