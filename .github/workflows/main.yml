@@ -1,0 +1,26 @@
+name: Publish
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Swift setup
+      uses: YOCKOW/Action-setup-swift@v1.1.2
+      with:
+        swift-version: 5.1
+
+    - name: Publish setup
+      run: |
+        git clone https://github.com/JohnSundell/Publish.git
+        cd Publish
+        make
+
+    - uses: actions/checkout@v2
+
+    - name: Publish to github pages
+      run: publish deploy
