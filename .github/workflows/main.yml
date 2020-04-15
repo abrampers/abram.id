@@ -21,6 +21,23 @@ jobs:
         make
 
     - uses: actions/checkout@v2
-
-    - name: Publish to github pages
-      run: publish deploy
+      
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v1.4.0
+      with:
+        # GitHub repository where assets will be deployed (default current)
+        repo: abrampers/abrampers.github.io
+        # Git branch where assets will be deployed
+        target_branch: master
+        # Create incremental commit instead of doing push force
+        keep_history: false
+        # Build directory to deploy
+        build_dir: ./Output
+        # Commit author's name
+        committer_name: Abram Situmorang
+        # Commit author's email
+        committer_email: abram.perdanaputra@gmail.com
+        # Commit message
+        commit_message: Deployment
+        # Write the given domain name to the CNAME file
+        fqdn: abram.id
