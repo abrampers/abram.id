@@ -41,3 +41,5 @@ jobs:
         commit_message: Deployment
         # Write the given domain name to the CNAME file
         fqdn: abram.id
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
