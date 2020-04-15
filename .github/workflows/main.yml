@@ -26,7 +26,7 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v1.4.0
       with:
         # GitHub repository where assets will be deployed (default current)
-        repo: https://github.com/abrampers/abrampers.github.io.git
+        repo: abrampers/abrampers.github.io
         # Git branch where assets will be deployed
         target_branch: master
         # Create incremental commit instead of doing push force
