@@ -25,26 +25,19 @@ jobs:
     - name: Build Output folder
       run: |
         publish generate
+    
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
-    - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v1.4.0
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@3.4.8
       with:
-        # GitHub repository where assets will be deployed (default current)
-        repo: abrampers/abrampers.github.io
-        # Git branch where assets will be deployed
-        target_branch: master
-        # Create incremental commit instead of doing push force
-        keep_history: false
-        # Build directory to deploy
-        build_dir: ./Output
-        # Commit author's name
-        committer_name: Abram Situmorang
-        # Commit author's email
-        committer_email: abram.perdanaputra@gmail.com
-        # Commit message
-        commit_message: Deployment
-        # Write the given domain name to the CNAME file
-        fqdn: abram.id
-      env:
+        SSH: false
+        ACCESS_TOKEN: ${{ secretes.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+        BRANCH: master
+        FOLDER: ./Output
+        COMMIT_MESSAGE: Deployment ${{steps.date.outputs.date}}
+        REPOSITORY_NAME: abrampers/abrampers.github.io
+        SINGLE_COMMIT: false
