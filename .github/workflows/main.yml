@@ -34,7 +34,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@3.4.8
       with:
         SSH: false
-        ACCESS_TOKEN: ${{ secretes.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master
         FOLDER: ./Output
