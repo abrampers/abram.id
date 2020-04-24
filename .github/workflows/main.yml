@@ -21,6 +21,10 @@ jobs:
         make
 
     - uses: actions/checkout@v2
+    
+    - name: Build Output folder
+      run: |
+        publish generate
       
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v1.4.0
