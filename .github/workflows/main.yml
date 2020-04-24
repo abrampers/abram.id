@@ -28,7 +28,9 @@ jobs:
     
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      run: |
+        echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        pwd
       
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.4.8
@@ -37,7 +39,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master
-        FOLDER: ./Output
+        FOLDER: Output
         COMMIT_MESSAGE: Deployment ${{steps.date.outputs.date}}
         REPOSITORY_NAME: abrampers/abrampers.github.io
         SINGLE_COMMIT: false
