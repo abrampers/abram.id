@@ -10,6 +10,7 @@ struct AbramId: Website {
         case blog
         case about
         case resume
+        case helm
         case tags
     }
 
@@ -34,6 +35,7 @@ extension AbramId: GoogleAnalyticsTrackable {
 try AbramId().publish(
     withTheme: .abramId,
     additionalSteps: [
+        .copyFiles(at: "Content/helm/abrampers", to: "/helm/abrampers", includingFolder: false),
         .deploy(using: .gitHub("abrampers/abrampers.github.io"))
     ],
     plugins: [
