@@ -43,3 +43,5 @@ jobs:
         COMMIT_MESSAGE: Deployment ${{steps.date.outputs.date}}
         REPOSITORY_NAME: abrampers/abrampers.github.io
         SINGLE_COMMIT: false
+      env:
+        ACTIONS_STEP_DEBUG: true
