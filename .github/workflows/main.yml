@@ -43,6 +43,6 @@ jobs:
         BASE_BRANCH: master
         BRANCH: master
         FOLDER: Output
-        COMMIT_MESSAGE: Deployment ${{steps.date.outputs.date}}
+        COMMIT_MESSAGE: Deployment ${{ steps.date.outputs.date }}: ${{ github.event.head_commit.message }}
         REPOSITORY_NAME: abrampers/abrampers.github.io
         SINGLE_COMMIT: false
