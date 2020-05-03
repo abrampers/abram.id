@@ -18,7 +18,7 @@ This year, I’m very lucky to be one of the WWDC19 Scholarship Winner from Indo
 
 
 ## **What is WWDC?**
-> The Apple Worldwide Developers Conference (WWDC, also known as Dub Dub) is a conference held annually by Apple Inc. in San Jose, California. Apple uses the event to showcase its new software and technologies for software developers. Attendees can participate in hands-on labs with Apple engineers and attend in-depth sessions covering a wide variety of topics. — Wikipedia
+The Apple Worldwide Developers Conference (WWDC, also known as Dub Dub) is a conference held annually by Apple Inc. in San Jose, California. Apple uses the event to showcase its new software and technologies for software developers. Attendees can participate in hands-on labs with Apple engineers and attend in-depth sessions covering a wide variety of topics. — Wikipedia
 
 Enough from Wikipedia, for me, WWDC is an event where developers gather and obtain plenty of insights from Apple about their software. Even better, it’s an event where students (or recently graduated High School students) can apply and actually receive the scholarship to go to this event without spending a single penny.
 
