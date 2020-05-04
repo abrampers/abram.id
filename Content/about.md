@@ -6,8 +6,8 @@ title: About
 
 <img src="/images/about/abram.jpg" alt="Me" class="center profile-picture" />
 
-I'm currently a student at [Institut Teknologi Bandung](https://en.wikipedia.org/wiki/Bandung_Institute_of_Technology), Indonesia pursuing a degree in Informatics Engineering (Computer Science equivalent). I am a curious person who has the dream to know everything about everything. I love to code and enjoys solving problems, especially in Software Engineering, Distributed Systems, and all of its applications. I have experienced interning at Indonesia's Unicorn startups [Bukalapak](https://bukalapak.com) and [Tokopedia](https://tokopedia.com), and [STOQO](https://stoqo.com) as a Software Engineer Intern. During my internship days, I've touched a wide range of problems from user facing problems, to back-end business logic-heavy problems.
+I'm currently a student at [Institut Teknologi Bandung](https://en.wikipedia.org/wiki/Bandung_Institute_of_Technology), Indonesia pursuing a degree in Informatics Engineering (Computer Science equivalent). I am a curious person who has the dream to know everything about everything. Previously I worked on transport platform at [STOQO](https://stoqo.com) , iOS at [Tokopedia](https://tokopedia.com), and chat platform [Bukalapak](https://bukalapak.com).
 
 I also enjoy having a discussion about life philosophy, leading,  and helping friends to be a better person. On my free time, I enjoy most of the popular sports in the world, notably Formula 1, Badminton, NBA, NFL, & Football.
 
-Feel free to reach me by mail to abram.perdanaputra AT gmail.com or via social media links at the [footer](#footer) below.
+Feel free to reach me at [abram.perdanaputra@gmail.com](mailto:abram.perdanaputra@gmail.com), [twitter](https://twitter.com/abrampers), or [linkedin](https://www.linkedin.com/in/abrampers/).

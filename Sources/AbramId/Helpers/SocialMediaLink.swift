@@ -16,14 +16,9 @@ struct SocialMediaLink {
 extension SocialMediaLink {
     static var links = [
         SocialMediaLink(
-            title: "LinkedIn",
-            url: "https://www.linkedin.com/in/abrampers/",
-            icon: "fa fa-linkedin"
-        ),
-        SocialMediaLink(
-            title: "Email",
-            url: "mailto:abram.perdanaputra@gmail.com",
-            icon: "fa fa-envelope"
+            title: "Twitter",
+            url: "https://twitter.com/abrampers",
+            icon: "fa fa-twitter"
         ),
         SocialMediaLink(
             title: "GitHub",
@@ -31,9 +26,14 @@ extension SocialMediaLink {
             icon: "fa fa-github"
         ),
         SocialMediaLink(
-            title: "Twitter",
-            url: "https://twitter.com/abrampers",
-            icon: "fa fa-twitter"
+            title: "Email",
+            url: "mailto:abram.perdanaputra@gmail.com",
+            icon: "fa fa-envelope"
+        ),
+        SocialMediaLink(
+            title: "LinkedIn",
+            url: "https://www.linkedin.com/in/abrampers/",
+            icon: "fa fa-linkedin"
         ),
         SocialMediaLink(
             title: "RSS Feed",
