@@ -13,7 +13,7 @@ jobs:
     - name: Swift setup
       uses: YOCKOW/Action-setup-swift@v1.1.2
       with:
-        swift-version: 5.1
+        swift-version: 5.2
 
     - name: Publish setup
       run: |
