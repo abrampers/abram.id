@@ -18,7 +18,6 @@ struct AbramId: Website {
         // Add any site-specific metadata that you want to use here.
     }
 
-    // Update these properties to configure your website:
     var url = URL(string: "https://abram.id")!
     var name = "Abram Situmorang"
     var description = "Here's a bit of my presence on the internet."
