@@ -1,13 +1,16 @@
-name: Publish
+name: Build and Deploy Preview
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - author/**
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - author/**
 
 jobs:
   publish:
-    if: "contains(github.event.head_commit.message, '[publish]')"
     runs-on: macos-10.15
     steps:
     - name: Swift setup

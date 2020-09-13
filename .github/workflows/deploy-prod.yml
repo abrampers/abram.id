@@ -1,0 +1,31 @@
+name: Build and Deploy Production
+on: [ workflow_dispatch ]
+
+jobs:
+  publish:
+    runs-on: macos-10.15
+    steps:
+    - name: Swift setup
+      uses: YOCKOW/Action-setup-swift@v1.1.2
+      with:
+        swift-version: 5.2
+
+    - name: Publish setup
+      run: |
+        git clone https://github.com/JohnSundell/Publish.git
+        cd Publish
+        make
+
+    - uses: actions/checkout@v2
+    
+    - name: Build Output folder
+      run: |
+        publish generate
+    
+    - name: Deploy to Netlify
+      uses: netlify/actions/cli@master
+      with:
+          args: deploy --dir=Output --prod
+      env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
