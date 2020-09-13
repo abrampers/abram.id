@@ -3,11 +3,11 @@ on:
   push:
     branches:
       - master
-      - author/**
+      - 'author/**'
   pull_request:
     branches:
       - master
-      - author/**
+      - 'author/**'
 
 jobs:
   publish:
