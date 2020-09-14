@@ -3,7 +3,7 @@ on: [ workflow_dispatch ]
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: macos-10.15
     steps:
     - name: Swift setup
       uses: YOCKOW/Action-setup-swift@v1.1.2
@@ -17,15 +17,16 @@ jobs:
         make
 
     - uses: actions/checkout@v2
-    
+
     - name: Build Output folder
       run: |
         publish generate
-    
-    - name: Deploy to Netlify
-      uses: netlify/actions/cli@master
+
+    - name: Install SSH Client 🔑
+      uses: webfactory/ssh-agent@v0.2.0
       with:
-          args: deploy --dir=Output --prod
-      env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+    - name: Deploy 🚀
+      run: |
+        publish deploy

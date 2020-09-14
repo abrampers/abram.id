@@ -11,7 +11,7 @@ on:
 
 jobs:
   publish:
-    runs-on: macos-10.15
+    runs-on: ubuntu-latest
     steps:
     - name: Swift setup
       uses: YOCKOW/Action-setup-swift@v1.1.2
@@ -22,33 +22,18 @@ jobs:
       run: |
         git clone https://github.com/JohnSundell/Publish.git
         cd Publish
-        make
+        swift build -c release 
 
     - uses: actions/checkout@v2
 
     - name: Build Output folder
       run: |
-        publish generate
+        Publish/.build/release/publish-cli generate
 
-    - name: Get current date
-      id: date
-      run: |
-        echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
-
-    - name: Install SSH Client 🔑
-      uses: webfactory/ssh-agent@v0.2.0 # This step installs the ssh client into the workflow run. There's many options available for this on the action marketplace.
+    - name: Deploy to Netlify
+      uses: netlify/actions/cli@master
       with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
-    - name: Deploy 🚀
-      run: |
-        publish deploy
-      # uses: JamesIves/github-pages-deploy-action@3.4.8
-      # with:
-      #   SSH: true
-      #   BASE_BRANCH: master
-      #   BRANCH: master
-      #   FOLDER: Output
-      #   COMMIT_MESSAGE: "Deployment ${{ steps.date.outputs.date }}: ${{ github.event.head_commit.message }}"
-      #   REPOSITORY_NAME: abrampers/abrampers.github.io
-      #   SINGLE_COMMIT: false
+          args: deploy --dir=Output --prod
+      env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
