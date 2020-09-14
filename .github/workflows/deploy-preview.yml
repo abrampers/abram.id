@@ -22,15 +22,13 @@ jobs:
       run: |
         git clone https://github.com/JohnSundell/Publish.git
         cd Publish
-        swift build -c release 
+        sudo make
 
     - uses: actions/checkout@v2
 
     - name: Build Output folder
       run: |
-        pwd
-        ls
-        .build/release/publish-cli generate
+        publish generate
 
     - name: Deploy to Netlify
       uses: netlify/actions/cli@master
