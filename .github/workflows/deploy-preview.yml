@@ -25,28 +25,30 @@ jobs:
         make
 
     - uses: actions/checkout@v2
-    
+
     - name: Build Output folder
       run: |
         publish generate
-    
+
     - name: Get current date
       id: date
       run: |
         echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
-    
+
     - name: Install SSH Client 🔑
       uses: webfactory/ssh-agent@v0.2.0 # This step installs the ssh client into the workflow run. There's many options available for this on the action marketplace.
       with:
         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-      
+
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.4.8
-      with:
-        SSH: true
-        BASE_BRANCH: master
-        BRANCH: master
-        FOLDER: Output
-        COMMIT_MESSAGE: "Deployment ${{ steps.date.outputs.date }}: ${{ github.event.head_commit.message }}"
-        REPOSITORY_NAME: abrampers/abrampers.github.io
-        SINGLE_COMMIT: false
+      run: |
+        publish deploy
+      # uses: JamesIves/github-pages-deploy-action@3.4.8
+      # with:
+      #   SSH: true
+      #   BASE_BRANCH: master
+      #   BRANCH: master
+      #   FOLDER: Output
+      #   COMMIT_MESSAGE: "Deployment ${{ steps.date.outputs.date }}: ${{ github.event.head_commit.message }}"
+      #   REPOSITORY_NAME: abrampers/abrampers.github.io
+      #   SINGLE_COMMIT: false
