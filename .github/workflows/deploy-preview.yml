@@ -28,7 +28,9 @@ jobs:
 
     - name: Build Output folder
       run: |
-        Publish/.build/release/publish-cli generate
+        pwd
+        ls
+        .build/release/publish-cli generate
 
     - name: Deploy to Netlify
       uses: netlify/actions/cli@master
