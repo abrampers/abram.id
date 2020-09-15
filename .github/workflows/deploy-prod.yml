@@ -1,5 +1,8 @@
-name: Build and Deploy Production
-on: [ workflow_dispatch ]
+name: deploy_prod
+on:
+  workflow_dispatch:
+    ref: master
+
 
 jobs:
   publish:
